@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace WebServer.interfaces
 {
-  public interface $INTERFACE$ {$END$}
+    public interface IController
+    {
+        
+    }
 }

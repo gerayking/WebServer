@@ -1,7 +1,9 @@
+using WebServer.Entry;
+
 namespace WebServer.infrastructure.Result
 {
-    public class ActionResult
+    public abstract class ActionResult
     {
-        
+        public abstract void Execute(HttpServerContext context);
     }
 }

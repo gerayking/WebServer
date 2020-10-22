@@ -1,4 +1,11 @@
-$HEADER$namespace $NAMESPACE$
+using WebServer.Entry;
+using WebServer.interfaces;
+
+namespace WebServer.infrastructure
 {
-  public class $CLASS$ {$END$}
+    public class Controller : IController
+    {
+        public HttpServerContext HttpContext { get; internal set; }
+        
+    }
 }

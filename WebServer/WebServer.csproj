@@ -38,12 +38,20 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Controllers\HomeController.cs" />
+        <Compile Include="Entry\HttpServerContext.cs" />
         <Compile Include="Entry\HttpServerRequest.cs" />
         <Compile Include="Entry\RouteEntry.cs" />
         <Compile Include="Entry\RouteFragment.cs" />
         <Compile Include="Entry\RouteValueDictionary.cs" />
         <Compile Include="Entry\UrlParameter.cs" />
         <Compile Include="Error\HttpUtil.cs" />
+        <Compile Include="infrastructure\Controller.cs" />
+        <Compile Include="infrastructure\HttpUtils.cs" />
+        <Compile Include="infrastructure\Result\ActionResult.cs" />
+        <Compile Include="infrastructure\Result\ContentResult.cs" />
+        <Compile Include="infrastructure\Result\ViewResult.cs" />
+        <Compile Include="interfaces\IController.cs" />
         <Compile Include="MiddleWares\BlockIp.cs" />
         <Compile Include="MiddleWares\Httplog.cs" />
         <Compile Include="MiddleWares\Routing.cs" />

@@ -7,6 +7,11 @@ namespace WebServer.Entry
         private readonly string _name;
         private readonly RouteFragment[] _fragments;
 
+        public RouteEntry(string name, string url, object defaults)
+        {
+            _name = name;
+            _fragments = Parse(url,defaults);
+        }
         private RouteFragment[] Parse(string url, object defaults)
         {
             var defaultValues =  new RouteValueDictionary().Load(defaults);

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Reflection;
+using WebServer.Entry;
 using WebServer.Error;
 using WebServer.HttpLog;
 using WebServer.MiddleWare;
+using WebServer.MiddleWares;
 
 namespace WebServer
 {
@@ -12,12 +15,24 @@ namespace WebServer
         public static void Main(string[] args)
         {
             var server = new WebServer(20);
-            server.Use(new Httplog());
-            server.Use(new ServerLet());
+            RegisterMiddlewares(server);
             server.Bind(serverUrl);
             server.start();
             Console.WriteLine($"Web server started at {serverUrl}. Press any key to exit...");
             Console.ReadKey();
+        }
+
+        static void RegisterMiddlewares(IWebServerBuilder builder)
+        {
+            builder.Use(new Httplog());
+            var route = new Routing();
+            RegisterRoutes(route);
+            builder.Use(route);
+        }
+        static void RegisterRoutes(Routing route)
+        {
+            route.AddRoute("Index","{controller}/{action}/{id}",
+                new {controller = "Home",action = "details", id = UrlParameter.Optional});
         }
     }
     
