@@ -24,6 +24,7 @@ namespace WebServer
 
         static void RegisterMiddlewares(IWebServerBuilder builder)
         {
+            builder.UnhandledException(new ResourceNotFoundExceptionHandler());
             builder.Use(new Httplog());
             var route = new Routing();
             RegisterRoutes(route);
