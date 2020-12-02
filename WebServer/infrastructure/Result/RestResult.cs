@@ -1,17 +1,17 @@
-using WebServer.Entry;
+﻿using WebServer.Entry;
 
 namespace WebServer.infrastructure.Result
 {
-    public class ContentResult : ActionResult
+    public class RestResult : ActionResult
     {
-        public ContentResult(string content, string mimeType = null)
-        {
-            _content = content ?? "";
-            _mimeType = mimeType ?? "text/html";
-        }
-
         private readonly string _content;
         private readonly string _mimeType;
+
+        public RestResult(string content, string mimeType)
+        {
+            _content = content;
+            _mimeType = mimeType;
+        }
         
         public override void Execute(HttpServerContext context)
         {

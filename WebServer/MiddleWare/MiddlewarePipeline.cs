@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using WebServer.Entry;
+using RazorEngine;
 
 namespace WebServer.MiddleWare
 {
@@ -30,7 +32,7 @@ namespace WebServer.MiddleWare
             _exceptionHandler = handler;
         }
 
-        internal void Execute(HttpListenerContext context)
+        internal void Execute(HttpServerContext context)
         {
             try
             {

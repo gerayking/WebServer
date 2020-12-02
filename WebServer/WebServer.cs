@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WebServer.Entry;
 using WebServer.MiddleWare;
 
 namespace WebServer
@@ -14,6 +15,9 @@ namespace WebServer
  * @return: return
  * @date:  2020-9-22
  * @author: gerayking
+ *
+ * The Server Builder
+ * set the Semaphore and add middlewares
  * **/
     public class WebServer : IWebServerBuilder
     {
@@ -42,7 +46,7 @@ namespace WebServer
                     _sem.WaitOne();
                     var context = await _listener.GetContextAsync();
                     _sem.Release();
-                    _pipeline.Execute(context);
+                    _pipeline.Execute(new HttpServerContext(context));
                 }
             });
         }

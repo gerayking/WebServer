@@ -21,6 +21,9 @@ namespace WebServer.Entry
             }
         }
         public RouteValueDictionary Parameters => _parameters;
+        /*
+         * 匹配当前_part是否与urlPart 符合，若符合则存入routeValues中
+         */
         public bool Match(string urlPart, RouteValueDictionary routeValues)
         {
             string pattern = _part;

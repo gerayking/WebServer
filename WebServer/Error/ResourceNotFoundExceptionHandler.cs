@@ -1,12 +1,13 @@
 using System;
 using System.Net;
+using WebServer.Entry;
 using WebServer.MiddleWare;
 
 namespace WebServer.Error
 {
     public class ResourceNotFoundExceptionHandler : IExceptionHandler
     {
-        public void HandleException(HttpListenerContext context, Exception exp)
+        public void HandleException(HttpServerContext context, Exception exp)
         {
             var clientIp = context.Request.RemoteEndPoint.Address;
             var method = context.Request.HttpMethod;

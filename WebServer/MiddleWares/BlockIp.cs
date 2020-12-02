@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Net;
+using WebServer.Entry;
 using WebServer.Error;
 using WebServer.MiddleWare;
 
@@ -13,7 +14,7 @@ namespace WebServer.HttpLog
         }
 
         private string[] _forbiddens;
-        public MiddlewareResult Execute(HttpListenerContext context)
+        public MiddlewareResult Execute(HttpServerContext context)
         {
             var clinetIp = context.Request.RemoteEndPoint.Address;
             if(_forbiddens.Contains(clinetIp.ToString()))

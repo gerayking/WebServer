@@ -1,14 +1,15 @@
 using System;
 using System.Net;
+using WebServer.Entry;
 
 namespace WebServer.MiddleWare
 {
     public interface IMiddleware
     {
-        MiddlewareResult Execute(HttpListenerContext context);
+        MiddlewareResult Execute(HttpServerContext context);
     }
     public interface IExceptionHandler
     {
-        void HandleException(HttpListenerContext context, Exception exp);
+        void HandleException(HttpServerContext context, Exception exp);
     }
 }

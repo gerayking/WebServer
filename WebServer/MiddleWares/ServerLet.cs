@@ -2,13 +2,14 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using WebServer.Entry;
 using WebServer.Error;
 
 namespace WebServer.MiddleWare
 {
     public class ServerLet : IMiddleware
     {
-        public MiddlewareResult Execute(HttpListenerContext context)
+        public MiddlewareResult Execute(HttpServerContext context)
         {
             var request = context.Request;
             var response = context.Response;

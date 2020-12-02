@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using WebServer.Entry;
 using WebServer.infrastructure;
 using WebServer.infrastructure.Result;
@@ -27,10 +28,13 @@ namespace WebServer.MiddleWares
             _entries.Add(new RouteEntry(name,url,defaults));
         }
         private List<RouteEntry> _entries;
-        public MiddlewareResult Execute(HttpListenerContext context)
+        // 执行路由算法
+        public MiddlewareResult Execute(HttpServerContext context)
         {
-            var httpServerRequest = new HttpServerRequest(context.Request);
-            var httpServerContext =  new HttpServerContext(context);
+            var httpServerRequest = context.Request;
+            var httpServerContext =  context;
+            
+            // 遍历每个用户的路由规则
             foreach (RouteEntry entry in _entries)
             {
                 var routeValues = entry.Match(httpServerRequest);
@@ -100,9 +104,25 @@ namespace WebServer.MiddleWares
             }
             else
             {
-                return new ContentResult(Convert.ToString(result), "text/html");
+                return new RestResult(Convert.ToString(result), "text/html");
             }
         }
-        
+
+        private bool FilterResource(HttpServerContext httpServerContext)
+        {
+            var url = httpServerContext.Request.Url.ToString();
+            var staticPathcon =  StaticPathCon.GetInstance();
+            var staticResCon = StaticResCon.GetInstance();
+            foreach (var item in staticResCon.GetPattern())
+            {
+                var re =new Regex(item);
+                var Match = re.Match(url);
+            }
+/*
+ *
+ *  未写完
+ */
+            return false;
+        }
     }
 }

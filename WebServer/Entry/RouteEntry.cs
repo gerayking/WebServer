@@ -12,6 +12,10 @@ namespace WebServer.Entry
             _name = name;
             _fragments = Parse(url,defaults);
         }
+        // 将用户自定义的url转化成服务器可识别的
+        /*
+         *  将参数放入一个字典RouteFragment[]中
+         */
         private RouteFragment[] Parse(string url, object defaults)
         {
             var defaultValues =  new RouteValueDictionary().Load(defaults);

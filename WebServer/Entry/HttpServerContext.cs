@@ -1,4 +1,5 @@
 using System.Net;
+using WebServer.interfaces;
 
 namespace WebServer.Entry
 {
@@ -8,12 +9,14 @@ namespace WebServer.Entry
      */
     public class HttpServerContext
     {
+        
         public HttpServerContext(HttpListenerContext context)
         {
             _innerContext = context;
             Request = new HttpServerRequest(context.Request);
         }
 
+        public Session Session;
         private readonly HttpListenerContext _innerContext;
         public HttpServerRequest Request;
         public HttpListenerResponse Response => _innerContext.Response;

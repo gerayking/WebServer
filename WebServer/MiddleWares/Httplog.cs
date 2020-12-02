@@ -1,12 +1,13 @@
 using System;
 using System.Net;
+using WebServer.Entry;
 using WebServer.MiddleWare;
 
 namespace WebServer.HttpLog
 {
     public class Httplog : IMiddleware
     {
-        public MiddlewareResult Execute(HttpListenerContext context)
+        public MiddlewareResult Execute(HttpServerContext context)
         {
             var request = context.Request;
             var path = request.Url.LocalPath;
