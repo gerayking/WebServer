@@ -14,7 +14,10 @@ namespace WebServer.Entry
 
         private readonly List<string> _pattern;
 
-        private StaticResCon(){}
+        private StaticResCon()
+        {
+            _pattern = new List<string>();
+        }
 
         public List<string> GetPattern()
         {
@@ -29,10 +32,12 @@ namespace WebServer.Entry
 
             return SingleTon;
         }
+
         public void AddPattern(string pattern)
         {
-            string replace = "*." + pattern;
-            _pattern.Add(replace);
+            string replace = ".*." + pattern;
+
+        _pattern.Add(replace);
         }
     }
 }

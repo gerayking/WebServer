@@ -36,9 +36,15 @@ namespace WebServer
             builder.UnhandledException(new ResourceNotFoundExceptionHandler());
             builder.Use(new SessionManager());
             builder.Use(new Httplog());
+            builder.Use(new Filter());
             var route = new Routing();
             RegisterRoutes(route);
             builder.Use(route);
+            RegisterStaticRule("ico");
+            RegisterStaticRule("js");
+            RegisterStaticRule("css");
+            RegisterStaticRule(".img");
+            RegisterStaticPath("Views");
         }
          // 添加路由规则
         static void RegisterRoutes(Routing route)
@@ -47,6 +53,18 @@ namespace WebServer
                 new {controller = "Home",action = "details", id = UrlParameter.Optional});
             route.AddRoute("Index","{controller}/{action}",
                 new {controller = "Home", action = "Index"});
+        }
+
+        static void RegisterStaticRule(string s)
+        {
+            var staticResCon =  StaticResCon.GetInstance();
+            staticResCon.AddPattern(s);
+        }
+
+        static void RegisterStaticPath(string s)
+        {
+            var staticPathCon = StaticPathCon.GetInstance();
+            staticPathCon.AddStaticPath(s);
         }
     }
     

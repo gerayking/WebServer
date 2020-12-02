@@ -12,7 +12,7 @@ namespace WebServer.Error
             var clientIp = context.Request.RemoteEndPoint.Address;
             var method = context.Request.HttpMethod;
             var path = context.Request.Url.LocalPath;
-            var expMsg = "Excetion" + exp.Message;
+            var expMsg = "Excetion" + exp.Message + "Not Found";
             Console.WriteLine("[{0:yyyy-MM-dd HH:mm:ss}] {1} {2} {3} ",
                 DateTime.Now, expMsg, method, path);
             Console.WriteLine(exp.StackTrace);

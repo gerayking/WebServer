@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using WebServer.Entry;
+using WebServer.Error;
 using WebServer.infrastructure;
 using WebServer.infrastructure.Result;
 using WebServer.interfaces;
@@ -107,22 +109,6 @@ namespace WebServer.MiddleWares
                 return new RestResult(Convert.ToString(result), "text/html");
             }
         }
-
-        private bool FilterResource(HttpServerContext httpServerContext)
-        {
-            var url = httpServerContext.Request.Url.ToString();
-            var staticPathcon =  StaticPathCon.GetInstance();
-            var staticResCon = StaticResCon.GetInstance();
-            foreach (var item in staticResCon.GetPattern())
-            {
-                var re =new Regex(item);
-                var Match = re.Match(url);
-            }
-/*
- *
- *  未写完
- */
-            return false;
-        }
+        
     }
 }

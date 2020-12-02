@@ -15,6 +15,7 @@ namespace WebServer.Entry
 
         private StaticPathCon()
         {
+            _PathFragment = new List<string>();
         }
 
         public List<string> GetFragment()
