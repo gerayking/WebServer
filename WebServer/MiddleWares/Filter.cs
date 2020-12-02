@@ -41,7 +41,6 @@ namespace WebServer.MiddleWares
             new ResourceNotFoundExceptionHandler().HandleException(httpServerContext,new Exception("url"));
             return false;
         }
-
         private bool FindResource(string url,HttpServerContext context)
         {
             var staticPathCon = StaticPathCon.GetInstance();
