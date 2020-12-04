@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace WebServer.Entry
 { 
@@ -14,11 +15,21 @@ namespace WebServer.Entry
 
         private readonly List<string> _pattern;
 
+        private readonly Dictionary<string,string> MimeTypeMap; 
+
         private StaticResCon()
         {
             _pattern = new List<string>();
+            MimeTypeMap = new Dictionary<string, string>();
+            MimeTypeMap["css"] = "text/css";
+            MimeTypeMap["js"] = "text/javascript";
+            MimeTypeMap["html"] = "text/html";
+            MimeTypeMap["gif"] = "image/gif";
+            MimeTypeMap["jpg"] = "image/jpeg";
+            MimeTypeMap["png"] = "image/png";
+            MimeTypeMap["ico"] = "image/vnd.microsoft.icon";
         }
-
+        
         public List<string> GetPattern()
         {
             return _pattern;
@@ -35,9 +46,13 @@ namespace WebServer.Entry
 
         public void AddPattern(string pattern)
         {
-            string replace = ".*." + pattern;
-
-        _pattern.Add(replace);
+            string replace = pattern;
+            _pattern.Add(replace);
+        }
+        public string ParseMimeType(string MimeName)
+        {
+            if (MimeTypeMap.ContainsKey(MimeName) == false) return "application/*";
+            return MimeTypeMap[MimeName];
         }
     }
 }

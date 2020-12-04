@@ -43,7 +43,7 @@ namespace WebServer
             RegisterStaticRule("ico");
             RegisterStaticRule("js");
             RegisterStaticRule("css");
-            RegisterStaticRule(".img");
+            RegisterStaticRule("img");
             RegisterStaticPath("Views");
         }
          // 添加路由规则
