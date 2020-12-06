@@ -35,7 +35,6 @@ namespace WebServer
         {
             _listener.Prefixes.Add(url);
         }
-
         public void start()
         {
             _listener.Start();

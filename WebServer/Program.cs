@@ -11,7 +11,7 @@ namespace WebServer
     internal class Program
     {
         private const int currentCount = 10;
-        private const string serverUrl = "http://localhost:9000/";
+        private const string serverUrl = "http://+:9000/";
 
          /**
          * @description: 启动入口
