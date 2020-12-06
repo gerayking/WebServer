@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using RazorEngine.Compilation;
 using WebServer.Entry;
 using WebServer.Error;
 using WebServer.infrastructure;
@@ -16,7 +17,6 @@ namespace WebServer.MiddleWares
             {
                 return MiddlewareResult.Processed;
             }
-
             return MiddlewareResult.Continue;
         }
         private bool FilterResource(HttpServerContext httpServerContext)
@@ -32,24 +32,31 @@ namespace WebServer.MiddleWares
                 var Match = re.Match(absolutePath);
                 if (Match.Success)
                 {
-                    FindResource(absolutePath,httpServerContext,item);
+                    if (FindResource(absolutePath, httpServerContext, item) == false)
+                    {
+                        new ResourceNotFoundExceptionHandler().HandleException(httpServerContext,new Exception("url"));
+                        httpServerContext.Response.NotFountResource(404);
+                    }
                     return true;
                 }
             }
-            new ResourceNotFoundExceptionHandler().HandleException(httpServerContext,new Exception("url"));
             return false;
         }
         private bool FindResource(string url,HttpServerContext context,string MimeType)
         {
+            if (MimeType == "svg")
+            {
+                MimeType = "svg";
+            }
             var staticPathCon = StaticPathCon.GetInstance();
             var staticResCon = StaticResCon.GetInstance();
             foreach (var item in staticPathCon.GetFragment())
             {
                 string basedir = System.IO.Directory.GetCurrentDirectory();
-                string path = basedir + "\\" + item + "\\" + url;
+                string path = basedir + "\\" + item + "\\" + url;    
                 if (!File.Exists(path)) continue;
                 var result = File.ReadAllText(path, System.Text.Encoding.UTF8);
-                if (MimeType.Equals("js") || MimeType.Equals("html"))
+                if (MimeType.Equals("js") || MimeType.Equals("html") || MimeType.Equals("css"))
                 {
                     context.Response.Content(result, staticResCon.ParseMimeType(MimeType));
                 }
@@ -57,7 +64,6 @@ namespace WebServer.MiddleWares
                 {
                     context.Response.Image(path, staticResCon.ParseMimeType(MimeType));
                 }
-
                 return true;
             }
             return false;

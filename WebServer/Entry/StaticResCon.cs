@@ -21,6 +21,7 @@ namespace WebServer.Entry
         {
             _pattern = new List<string>();
             MimeTypeMap = new Dictionary<string, string>();
+            init();
 
         }
 
@@ -33,6 +34,13 @@ namespace WebServer.Entry
             _pattern.Add("jpg");
             _pattern.Add("png");
             _pattern.Add("ico");
+            _pattern.Add("svg");
+            _pattern.Add("woff");
+            _pattern.Add("woff2");
+            _pattern.Add("eot");
+            _pattern.Add("ttf");
+            _pattern.Add("map");
+            MimeTypeMap["svg"] = "image/svg+xml";
             MimeTypeMap["css"] = "text/css";
             MimeTypeMap["js"] = "text/javascript";
             MimeTypeMap["html"] = "text/html";

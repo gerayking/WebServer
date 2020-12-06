@@ -45,6 +45,7 @@ namespace WebServer
                 {
                     _sem.WaitOne();
                     var context = await _listener.GetContextAsync();
+                    Console.WriteLine(context.Request.Url);
                     _sem.Release();
                     _pipeline.Execute(new HttpServerContext(context));
                 }

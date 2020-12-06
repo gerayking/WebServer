@@ -9,15 +9,20 @@ namespace WebServer.Controllers
     public class HomeController : Controller
     {
         private static Session Session = new Session();
-        
 
+
+        public ActionResult Index2()
+        {
+            var model = new { };
+            return new ViewResult("Index","index",model);
+        }
         public ActionResult Index()
         {
             int counter = (Session["counter"] != null) ? (int)Session["counter"] : 0;
             counter++;
             Session["counter"] = counter;
             var model = new {title = "Homepage", counter = counter};
-            return new ViewResult("Index", "index",model);
+            return new ViewResult("Index", "index2",model);
         }
         public string Details(int id = 15)
         {

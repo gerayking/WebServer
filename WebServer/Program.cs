@@ -10,7 +10,7 @@ namespace WebServer
 {
     internal class Program
     {
-        private const int currentCount = 20;
+        private const int currentCount = 10;
         private const string serverUrl = "http://localhost:9000/";
 
          /**
@@ -23,7 +23,7 @@ namespace WebServer
          * **/
         public static void Main(string[] args)
         {
-            var server = new WebServer(20);
+            var server = new WebServer(currentCount);
             RegisterMiddlewares(server);
             server.Bind(serverUrl);
             server.start();
@@ -40,6 +40,7 @@ namespace WebServer
             var route = new Routing();
             RegisterRoutes(route);
             builder.Use(route);
+            builder.Use(new Http404());
         }
          // 添加路由规则
         static void RegisterRoutes(Routing route)
@@ -48,6 +49,8 @@ namespace WebServer
                 new {controller = "Home",action = "details", id = UrlParameter.Missing});
             route.AddRoute("Index","{controller}/{action}",
                 new {controller = "Home", action = "Index"});
+            route.AddRoute("Indexhtml","{controller}/{action}",
+                new {controller = "Home", action = "Index2"});
         }
 
         static void RegisterStaticRule(string s)

@@ -43,13 +43,21 @@ namespace WebServer.MiddleWares
                 if (routeValues != null)
                 {
                     // 找到路由对象,获取Controller
-                    var controller = createController(httpServerContext, routeValues);
-                    // 获取对应的方法
-                    var actionMethod = getActionMethod(controller, routeValues);
-                    // 对其执行对应的方法并且返回相应上下文以及模型
-                    var result = getActionResult(controller, actionMethod, routeValues);
-                    result.Execute(httpServerContext);
-                    return MiddlewareResult.Processed;
+                    try
+                    {
+                        var controller = createController(httpServerContext, routeValues);
+                        // 获取对应的方法
+                        var actionMethod = getActionMethod(controller, routeValues);
+                        // 对其执行对应的方法并且返回相应上下文以及模型
+                        var result = getActionResult(controller, actionMethod, routeValues);
+                        result.Execute(httpServerContext);
+                        return MiddlewareResult.Processed;
+                    }                    
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e);
+                        return MiddlewareResult.Continue;
+                    }
                 }
             }
             return MiddlewareResult.Continue;
@@ -82,7 +90,6 @@ namespace WebServer.MiddleWares
             {
                 throw new ArgumentException($"Controller {controllerType.Name} has no action method {actionName}");
             }
-
             return method;
         }
 
