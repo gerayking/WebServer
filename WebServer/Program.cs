@@ -40,17 +40,12 @@ namespace WebServer
             var route = new Routing();
             RegisterRoutes(route);
             builder.Use(route);
-            RegisterStaticRule("ico");
-            RegisterStaticRule("js");
-            RegisterStaticRule("css");
-            RegisterStaticRule("img");
-            RegisterStaticPath("Views");
         }
          // 添加路由规则
         static void RegisterRoutes(Routing route)
         {
             route.AddRoute("Home","{controller}/{action}/{id}",
-                new {controller = "Home",action = "details", id = UrlParameter.Optional});
+                new {controller = "Home",action = "details", id = UrlParameter.Missing});
             route.AddRoute("Index","{controller}/{action}",
                 new {controller = "Home", action = "Index"});
         }

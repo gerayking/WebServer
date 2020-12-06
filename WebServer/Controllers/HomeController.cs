@@ -19,7 +19,7 @@ namespace WebServer.Controllers
             var model = new {title = "Homepage", counter = counter};
             return new ViewResult("Index", "index",model);
         }
-        public string Details(int id)
+        public string Details(int id = 15)
         {
             return "Home page" + id;
         }

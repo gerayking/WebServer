@@ -21,6 +21,18 @@ namespace WebServer.Entry
         {
             _pattern = new List<string>();
             MimeTypeMap = new Dictionary<string, string>();
+
+        }
+
+        private void init()
+        {
+            _pattern.Add("js");
+            _pattern.Add("css");
+            _pattern.Add("html");
+            _pattern.Add("gif");
+            _pattern.Add("jpg");
+            _pattern.Add("png");
+            _pattern.Add("ico");
             MimeTypeMap["css"] = "text/css";
             MimeTypeMap["js"] = "text/javascript";
             MimeTypeMap["html"] = "text/html";
