@@ -44,10 +44,7 @@ namespace WebServer.MiddleWares
         }
         private bool FindResource(string url,HttpServerContext context,string MimeType)
         {
-            if (MimeType == "svg")
-            {
-                MimeType = "svg";
-            }
+            
             var staticPathCon = StaticPathCon.GetInstance();
             var staticResCon = StaticResCon.GetInstance();
             foreach (var item in staticPathCon.GetFragment())

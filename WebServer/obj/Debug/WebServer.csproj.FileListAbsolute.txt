@@ -1,0 +1,10 @@
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\WebServer.exe
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\WebServer.pdb
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\Microsoft.AspNetCore.Razor.dll
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\RazorEngine.dll
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\Microsoft.AspNetCore.Razor.xml
+D:\Code\C#\webServer\ours\WebServer\WebServer\bin\Debug\RazorEngine.xml
+D:\Code\C#\webServer\ours\WebServer\WebServer\obj\Debug\WebServer.csprojAssemblyReference.cache
+D:\Code\C#\webServer\ours\WebServer\WebServer\obj\Debug\WebServer.csproj.CopyComplete
+D:\Code\C#\webServer\ours\WebServer\WebServer\obj\Debug\WebServer.exe
+D:\Code\C#\webServer\ours\WebServer\WebServer\obj\Debug\WebServer.pdb
