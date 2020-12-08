@@ -19,7 +19,7 @@
 
 基于中间件设计架构的解耦方案
 
-![image-20201206194445221](C:\Users\ASJA\AppData\Roaming\Typora\typora-user-images\image-20201206194445221.png)
+![image-20201206194445221](https://i.bmp.ovh/imgs/2020/12/f68764280b89f9ec.png)
 
 ## 2. 技术细节
 
@@ -140,7 +140,7 @@ internal void Execute(HttpListenerContext context)
 
 业务流程如图：
 
-![image-20201206201032884](C:\Users\ASJA\AppData\Roaming\Typora\typora-user-images\image-20201206201032884.png)
+![image-20201206201032884](https://i.bmp.ovh/imgs/2020/12/bae58ab49f5fa374.png)
 
 匹配路由时的规则则大致为：
 
@@ -301,7 +301,7 @@ public MiddlewareResult Execute(HttpServerContext context)
 
 基本业务流程：
 
-![image-20201206201915380](C:\Users\ASJA\AppData\Roaming\Typora\typora-user-images\image-20201206201915380.png)
+![image-20201206201915380](https://i.bmp.ovh/imgs/2020/12/dd0315447eb666a3.png)
 
 1） 静态资源类型扫描范围
 
@@ -388,7 +388,7 @@ public MiddlewareResult Execute(HttpServerContext context)
 
 考虑到目前如果自己实现视图引擎学习成本过大，且与本课程关联度不大，所以决定决定集成市面上的RazorEngine到我们的服务器中．集成RazorEngine的时候需要整合路由模块的实现．具体方案流程如下：
 
-![image-20201206203531149](C:\Users\ASJA\AppData\Roaming\Typora\typora-user-images\image-20201206203531149.png)
+![image-20201206203531149](https://i.bmp.ovh/imgs/2020/12/1520abc0e4a73cc3.png)
 
 ## 6. 日志及异常处理
 
@@ -429,7 +429,7 @@ public MiddlewareResult Execute(HttpServerContext context)
 
 日志及异常处理截图：
 
-![image-20201206210918615](C:\Users\ASJA\AppData\Roaming\Typora\typora-user-images\image-20201206210918615.png)
+![image-20201206210918615](https://i.bmp.ovh/imgs/2020/12/96de8371db52e106.png)
 
 ## 7. 用户使用细则
 
