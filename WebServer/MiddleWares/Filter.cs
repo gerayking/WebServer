@@ -23,6 +23,10 @@ namespace WebServer.MiddleWares
         {
             var url = httpServerContext.Request.Url.ToString();
             string absolutePath = httpServerContext.Request.Url.AbsolutePath;
+            if (string.IsNullOrWhiteSpace(absolutePath) || absolutePath.Equals("/"))
+            {
+                absolutePath = "index.html";
+            }
             var staticPathcon =  StaticPathCon.GetInstance();
             var staticResCon = StaticResCon.GetInstance();
             foreach (var item in staticResCon.GetPattern())

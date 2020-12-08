@@ -30,7 +30,7 @@ namespace WebServer.MiddleWares
             _entries.Add(new RouteEntry(name,url,defaults));
         }
         private List<RouteEntry> _entries;
-        // 执行路由算法
+        // 执行路由
         public MiddlewareResult Execute(HttpServerContext context)
         {
             var httpServerRequest = context.Request;

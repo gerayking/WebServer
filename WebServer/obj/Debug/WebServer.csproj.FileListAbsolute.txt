@@ -1,0 +1,11 @@
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\WebServer.exe
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\WebServer.pdb
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\Microsoft.AspNetCore.Razor.dll
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\RazorEngine.dll
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\Microsoft.AspNetCore.Razor.xml
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\bin\Debug\RazorEngine.xml
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\obj\Debug\WebServer.csprojAssemblyReference.cache
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\obj\Debug\WebServer.csproj.CoreCompileInputs.cache
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\obj\Debug\WebServer.csproj.CopyComplete
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\obj\Debug\WebServer.exe
+C:\home\geray\linuxrep\RiderProjects\WebServer\WebServer\obj\Debug\WebServer.pdb
