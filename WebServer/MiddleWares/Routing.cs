@@ -30,7 +30,7 @@ namespace WebServer.MiddleWares
             _entries.Add(new RouteEntry(name,url,defaults));
         }
         private List<RouteEntry> _entries;
-        // 执行路由算法
+        // 执行路由
         public MiddlewareResult Execute(HttpServerContext context)
         {
             var httpServerRequest = context.Request;
@@ -39,7 +39,7 @@ namespace WebServer.MiddleWares
             // 遍历每个用户的路由规则
             foreach (RouteEntry entry in _entries)
             {
-                var routeValues = entry.Match(httpServerRequest);
+                var routeValues = entry.Match(context.Request);
                 if (routeValues != null)
                 {
                     // 找到路由对象,获取Controller
@@ -47,15 +47,17 @@ namespace WebServer.MiddleWares
                     {
                         var controller = createController(httpServerContext, routeValues);
                         // 获取对应的方法
+                        if (controller == null) continue;
                         var actionMethod = getActionMethod(controller, routeValues);
+                        if (actionMethod == null) continue;
                         // 对其执行对应的方法并且返回相应上下文以及模型
                         var result = getActionResult(controller, actionMethod, routeValues);
+                        if (result == null) continue;
                         result.Execute(httpServerContext);
                         return MiddlewareResult.Processed;
                     }                    
                     catch (ArgumentException e)
                     {
-                        Console.WriteLine(e);
                         return MiddlewareResult.Continue;
                     }
                 }
@@ -76,6 +78,7 @@ namespace WebServer.MiddleWares
                     return instance;
                 }
             }
+            return null;
             throw new ArgumentException($"Controller {className} not found");
         }
 
@@ -88,6 +91,7 @@ namespace WebServer.MiddleWares
             var method = controller.GetType().GetMethod(actionName);
             if (method == null)
             {
+                return null;
                 throw new ArgumentException($"Controller {controllerType.Name} has no action method {actionName}");
             }
             return method;
@@ -101,6 +105,11 @@ namespace WebServer.MiddleWares
             for (int i = 0; i < methodParams.Length; i++)
             {
                 var routeValue = routeValues[methodParams[i].Name];
+                if (routeValue == UrlParameter.Missing)
+                {
+                    paramValues[i] = methodParams[i].DefaultValue;
+                    continue;
+                }
                 var paramValue = Convert.ChangeType(routeValue, methodParams[i].ParameterType);
                 paramValues[i] = paramValue;
             }

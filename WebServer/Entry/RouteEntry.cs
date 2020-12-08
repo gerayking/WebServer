@@ -26,15 +26,15 @@ namespace WebServer.Entry
             var urlPath = request.Url.LocalPath.TrimStart('/');
             var urlParts = urlPath.Split('/');
             var routeValues = new RouteValueDictionary();
-            for (var i = 0; i < _fragments.Length; i++)
+            for (int i = 0; i < _fragments.Length; i++)
             {
                 string urlPart = (i < urlParts.Length) ? urlParts[i] : "";
                 if (!_fragments[i].Match(urlPart, routeValues))
                     return null;
             }
 
-            if (routeValues.Values.Contains(UrlParameter.Missing))
-                return null;
+            /*if (routeValues.Values.Contains(UrlParameter.Missing))
+                return null;*/
 
             return routeValues;
         }
