@@ -37,11 +37,16 @@ namespace WebServer.Entry
             }
             var re = new Regex(pattern);
             var match = re.Match(urlPart);
-            if (!match.Success)
-                return false;
             foreach (var kv in _parameters)
             {
+                if (!match.Success && kv.Value != UrlParameter.Missing) return false;
                 string matchValue = match.Groups[kv.Key].Value;
+                if (!(kv.Value == UrlParameter.Missing || kv.Value == UrlParameter.Optional))
+                {
+                    if (!matchValue.Equals(kv.Value)) return false;
+                    routeValues[kv.Key] = kv.Value;
+                    continue;
+                }
                 if (string.IsNullOrWhiteSpace(matchValue))
                     routeValues[kv.Key] = kv.Value;
                 else

@@ -10,10 +10,9 @@ namespace WebServer
 {
     internal class Program
     {
-        private const int currentCount = 10;
+        private const int currentCount = 20;
         private const string serverUrl = "http://+:9000/";
-
-         /**
+        /**
          * @description: 启动入口
          * @params: params
          * @return: return
@@ -49,16 +48,16 @@ namespace WebServer
                 new {controller = "Home",action = "details", id = UrlParameter.Missing});
             route.AddRoute("Index","{controller}/{action}",
                 new {controller = "Home", action = "Index"});
-            route.AddRoute("Indexhtml","{controller}/{action}",
+            route.AddRoute("Indexhtml", "{controller}/{action}",
                 new {controller = "Home", action = "Index2"});
+            route.AddRoute("test","{controller}/{action}/{firstName}/{lastName}",
+                new {controller = "test",action = "test",firstName = UrlParameter.Optional,lastName=UrlParameter.Missing});
         }
-
         static void RegisterStaticRule(string s)
         {
             var staticResCon =  StaticResCon.GetInstance();
             staticResCon.AddPattern(s);
         }
-
         static void RegisterStaticPath(string s)
         {
             var staticPathCon = StaticPathCon.GetInstance();
